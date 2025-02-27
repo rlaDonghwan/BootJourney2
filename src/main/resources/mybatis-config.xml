@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.highgarden.springboot_board.dto.BoardDTO" alias="board"/>
+        <typeAlias type="com.BootJourney2.dto.BoardDTO" alias="board"/>
+        <typeAlias type="com.BootJourney2.dto.BoardFileDTO" alias="boardFile"/>
     </typeAliases>
 </configuration>

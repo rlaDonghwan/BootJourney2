@@ -1,6 +1,7 @@
 package com.BootJourney2.controller;
 
 import com.BootJourney2.dto.BoardDTO;
+import com.BootJourney2.dto.BoardFileDTO;
 import com.BootJourney2.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -22,7 +24,7 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public String save(BoardDTO boardDTO) {
+    public String save(BoardDTO boardDTO) throws IOException {
         boardService.save(boardDTO);
         return "redirect:/list";
     }
@@ -41,6 +43,13 @@ public class BoardController {
         //상세 내용 처리
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
+
+        if(boardDTO.getFileAttached() == 1){
+            List<BoardFileDTO> boardFileDTOList = boardService.findFile(id);
+            model.addAttribute("boardFileList", boardFileDTOList);
+        }
+
+
         return "detail";
     }
 

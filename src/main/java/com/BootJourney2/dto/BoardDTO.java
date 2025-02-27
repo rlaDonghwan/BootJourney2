@@ -1,10 +1,11 @@
 package com.BootJourney2.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,4 +18,10 @@ public class BoardDTO {
     private String boardContents;
     private int boardHits;
     private String createAt;
+
+    private int fileAttached;
+    private List<MultipartFile> boardFile;
+    private List<BoardFileDTO> boardFileDTOList; // 🔥 파일 목록을 저장할 필드 추가
+
+
 }
